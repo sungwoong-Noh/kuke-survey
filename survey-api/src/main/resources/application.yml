@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+spring:
+  application:
+    name: survey-api
+
+    # 📌 DB 설정 (로컬 개발용 H2 인메모리 DB)
+    datasource:
+      driver-class-name: org.h2.Driver
+      url: jdbc:h2:mem:surveydb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      username: sa
+      password:
+
+    # 📌 H2 웹 콘솔 활성화 (브라우저에서 DB 확인: http://localhost:8080/h2-console)
+    h2:
+      console:
+        enabled: true
+        path: /h2-console
+
+
+    # 📌 Snowflake Node ID 설정 (기본값: 1)
+    snowflake:
+      node-id: 1
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html        # 접속 URL: http://localhost:8080/swagger-ui.html
+    groups-order: DESC
+    operations-sorter: method     # API 메서드 정렬 (GET, POST, PUT, DELETE 등)
+    tags-sorter: alpha            # 태그 알파벳순 정렬
+    display-request-duration: true # API 응답 시간 표시
+  api-docs:
+    path: /v3/api-docs            # OpenAPI 스펙 JSON 경로
